@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="TextmodBase" load_steps=9 format=3 uid="uid://deaajuee7ca87"]
+
+[ext_resource type="Script" uid="uid://2bf4ronvci1" path="res://addons/textmod/core/textmod_modifier.gd" id="1_jahta"]
+[ext_resource type="Script" uid="uid://c6oqonjxju8bl" path="res://examples/hero/example_hero.gd" id="1_vdbml"]
+[ext_resource type="Resource" uid="uid://507ryq0py0cy" path="res://examples/hero/textmod/modifier/hero_face_textmod.tres" id="2_gupkh"]
+[ext_resource type="Resource" uid="uid://5r3i5oe6yn6s" path="res://examples/hero/textmod/modifier/hero_hair_color_textmod.tres" id="3_hrwsl"]
+[ext_resource type="Script" uid="uid://bugl0u5ny7amy" path="res://addons/textmod/core/textmod_base.gd" id="3_qfpi7"]
+[ext_resource type="Resource" uid="uid://btwayn0v40xm2" path="res://examples/hero/textmod/modifier/hero_health_textmod.tres" id="4_gs6gh"]
+[ext_resource type="Resource" uid="uid://dilgl14g0forr" path="res://examples/hero/textmod/modifier/hero_item_textmod.tres" id="5_lm2qi"]
+[ext_resource type="Resource" uid="uid://bn6e5vbmn854r" path="res://examples/hero/textmod/modifier/hero_name_textmod.tres" id="6_mf1ft"]
+
+[resource]
+script = ExtResource("3_qfpi7")
+possible_modifiers = Array[ExtResource("1_jahta")]([ExtResource("2_gupkh"), ExtResource("3_hrwsl"), ExtResource("4_gs6gh"), ExtResource("5_lm2qi"), ExtResource("6_mf1ft")])
+resource_to_modify = ExtResource("1_vdbml")
+textmod_key = "hero"
+docs_name = "Hero Creation"
+docs_description = "Allows to create and define a new hero. Value can either be fighter, wizard or priest."
+docs_color = Color(0.76833665, 0.5073326, 0, 1)
+metadata/_custom_type_script = "uid://bugl0u5ny7amy"

@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="TextmodModifier" load_steps=6 format=3 uid="uid://btwayn0v40xm2"]
+
+[ext_resource type="Script" uid="uid://2bf4ronvci1" path="res://addons/textmod/core/textmod_modifier.gd" id="1_8lx2j"]
+[ext_resource type="Script" uid="uid://ba8e0rblexpxd" path="res://addons/textmod/impl/pipes/textmod_pipe_simple_setter.gd" id="1_by0uf"]
+[ext_resource type="Script" uid="uid://cutev3yq2124b" path="res://addons/textmod/impl/value_parsers/textmod_number_parser.gd" id="2_by0uf"]
+
+[sub_resource type="Resource" id="Resource_ltffw"]
+script = ExtResource("1_by0uf")
+property_path = "health"
+metadata/_custom_type_script = "uid://ba8e0rblexpxd"
+
+[sub_resource type="Resource" id="Resource_id5xs"]
+script = ExtResource("2_by0uf")
+metadata/_custom_type_script = "uid://cutev3yq2124b"
+
+[resource]
+script = ExtResource("1_8lx2j")
+pipe_script = SubResource("Resource_ltffw")
+value_parser = SubResource("Resource_id5xs")
+textmod_key = "hp"
+docs_name = "Set Health"
+docs_description = "Sets the health of a hero"
+docs_color = Color(1, 0, 1, 1)
+metadata/_custom_type_script = "uid://2bf4ronvci1"

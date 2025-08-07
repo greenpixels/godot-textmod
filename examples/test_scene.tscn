@@ -1,0 +1,179 @@
+[gd_scene load_steps=8 format=3 uid="uid://cfcg07lyk5mm4"]
+
+[ext_resource type="Script" uid="uid://bxmdcbhp7uo5v" path="res://examples/test_parser.gd" id="1_g3kdf"]
+[ext_resource type="Script" uid="uid://dep15iuujlogt" path="res://addons/textmod/userland/textmod_parser.gd" id="2_mjlwq"]
+[ext_resource type="Script" uid="uid://bugl0u5ny7amy" path="res://addons/textmod/core/textmod_base.gd" id="3_nu2q2"]
+[ext_resource type="Resource" uid="uid://deaajuee7ca87" path="res://examples/hero/textmod/hero_textmod.tres" id="4_2netj"]
+[ext_resource type="Script" uid="uid://bmyetf4mwj106" path="res://examples/hero_information_panel.gd" id="5_ynip6"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_0vdma"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g3kdf"]
+bg_color = Color(0.111196846, 0.111196846, 0.111196786, 1)
+
+[node name="TestParser" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_g3kdf")
+
+[node name="Parser" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_mjlwq")
+bases = Array[ExtResource("3_nu2q2")]([ExtResource("4_2netj")])
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -354.5
+offset_top = 81.0
+offset_right = 354.5
+offset_bottom = 143.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="TextEdit" type="TextEdit" parent="PanelContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HeroInformationPanel" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -354.0
+offset_top = 183.0
+offset_right = 355.0
+offset_bottom = 404.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("5_ynip6")
+
+[node name="HBoxContainerInfo" type="HBoxContainer" parent="HeroInformationPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="HeroInformationPanel/HBoxContainerInfo"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HeroInformationPanel/HBoxContainerInfo/CenterContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="FaceTexture" type="TextureRect" parent="HeroInformationPanel/HBoxContainerInfo/CenterContainer/MarginContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+texture = SubResource("PlaceholderTexture2D_0vdma")
+
+[node name="MarginContainer" type="MarginContainer" parent="HeroInformationPanel/HBoxContainerInfo"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HeroInformationPanel/HBoxContainerInfo/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NameHBoxContainer" type="HBoxContainer" parent="HeroInformationPanel/HBoxContainerInfo/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HeroInformationPanel/HBoxContainerInfo/MarginContainer/VBoxContainer/NameHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Name"
+
+[node name="NameValue" type="Label" parent="HeroInformationPanel/HBoxContainerInfo/MarginContainer/VBoxContainer/NameHBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HealthHBoxContainer" type="HBoxContainer" parent="HeroInformationPanel/HBoxContainerInfo/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HeroInformationPanel/HBoxContainerInfo/MarginContainer/VBoxContainer/HealthHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Health"
+
+[node name="HealthValue" type="Label" parent="HeroInformationPanel/HBoxContainerInfo/MarginContainer/VBoxContainer/HealthHBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HairColorHBoxContainer" type="HBoxContainer" parent="HeroInformationPanel/HBoxContainerInfo/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HeroInformationPanel/HBoxContainerInfo/MarginContainer/VBoxContainer/HairColorHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Hair Color"
+
+[node name="HairColorValue" type="ColorRect" parent="HeroInformationPanel/HBoxContainerInfo/MarginContainer/VBoxContainer/HairColorHBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="HeroInformationPanel/HBoxContainerInfo/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Hair Color"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HeroInformationPanel/HBoxContainerInfo/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_g3kdf")
+horizontal_scroll_mode = 2
+
+[node name="InventoryValue" type="Label" parent="HeroInformationPanel/HBoxContainerInfo/MarginContainer/VBoxContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 6
+vertical_alignment = 1
+
+[node name="ScrollContainerError" type="ScrollContainer" parent="HeroInformationPanel"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HeroInformationPanel/ScrollContainerError"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="ErrorMessage" type="Label" parent="HeroInformationPanel/ScrollContainerError/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(1, 0.44313726, 0.38431373, 1)
+text = "Error:"
+autowrap_mode = 3
+
+[connection signal="parse_error" from="Parser" to="." method="_on_parser_parse_error"]
+[connection signal="parse_success" from="Parser" to="." method="_on_parser_parse_success"]
+[connection signal="text_changed" from="PanelContainer/HBoxContainer/TextEdit" to="." method="_on_text_edit_text_changed"]

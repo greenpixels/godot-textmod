@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="TextmodModifier" load_steps=6 format=3 uid="uid://dilgl14g0forr"]
+
+[ext_resource type="Script" uid="uid://d1w8wgnqtuldp" path="res://addons/textmod/impl/pipes/textmod_pipe_simple_array_push.gd" id="1_bbcmw"]
+[ext_resource type="Script" uid="uid://2bf4ronvci1" path="res://addons/textmod/core/textmod_modifier.gd" id="1_flga3"]
+[ext_resource type="Script" uid="uid://k1d25wllvjlx" path="res://addons/textmod/impl/value_parsers/textmod_text_parser.gd" id="3_4i6vb"]
+
+[sub_resource type="Resource" id="Resource_y4e1k"]
+script = ExtResource("1_bbcmw")
+property_path = "items"
+metadata/_custom_type_script = "uid://d1w8wgnqtuldp"
+
+[sub_resource type="Resource" id="Resource_1d2ps"]
+script = ExtResource("3_4i6vb")
+metadata/_custom_type_script = "uid://k1d25wllvjlx"
+
+[resource]
+script = ExtResource("1_flga3")
+pipe_script = SubResource("Resource_y4e1k")
+value_parser = SubResource("Resource_1d2ps")
+textmod_key = "item"
+docs_name = "Add Item"
+docs_description = "Adds an item to the inventory of the hero"
+metadata/_custom_type_script = "uid://2bf4ronvci1"
