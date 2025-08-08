@@ -1,1 +1,2 @@
 - abstract has been added with Godot 4.5 and can be added to a class or a function. It does not need an implementation.
+- Textmod enables you do use dots as separators for keys and values used for modding. Meaning if you want to use dots in either the value or key you can wrap it in quotation marks. Example: hero.hp.140.name."Klaus.Dieter".item.Longbow

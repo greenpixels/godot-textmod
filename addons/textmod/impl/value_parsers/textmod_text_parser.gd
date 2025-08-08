@@ -18,3 +18,14 @@ func parse(value: String, part: TextmodPart) -> Variant:
 			return TextmodError.new("{VALUE} does not match the regex expression ({EXPRESSION})" \
 				.format({"VALUE": value, "EXPRESSION": regex_expression}), part)
 	return value
+
+func get_docs_examples() -> Array[String]:
+	return ["Hello", "World", "\"Klaus.Dieter\"", "Simple_Text", "Text with spaces"]
+
+func get_docs_description() -> String:
+	var examples: Array[String] = get_docs_examples()
+	var description: String = "Enter any text value. Use quotation marks if text contains dots. "
+	if not regex_expression.is_empty():
+		description += "Must match regex pattern: " + regex_expression + ". "
+	description += "Examples: " + ", ".join(examples)
+	return description

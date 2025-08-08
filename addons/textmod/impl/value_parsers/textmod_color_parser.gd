@@ -7,3 +7,11 @@ func parse(value: String, part: TextmodPart) -> Variant:
 			value + " was given, but needs to be a hexadecimal value (case-insensitive) " +
 			"of either 3, 4, 6 or 8 digits, and may be prefixed by a hash sign (#).", part)
 	return Color.html(value)
+
+func get_docs_examples() -> Array[String]:
+	return ["#FF0000", "#00FF00", "#0000FF", "#FFFFFF", "#000000", "FF0000", "ABC", "#RGBA"]
+
+func get_docs_description() -> String:
+	var examples: Array[String] = get_docs_examples()
+	return "Enter a hexadecimal color value (case-insensitive) of 3, 4, 6 or 8 digits, " + \
+		"optionally prefixed by a hash sign (#). Examples: " + ", ".join(examples)

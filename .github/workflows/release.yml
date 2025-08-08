@@ -1,0 +1,83 @@
+name: Create Release
+
+on:
+  push:
+    branches: [ main ]
+    paths: [ 'project.godot' ]
+  workflow_dispatch:
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.PAT }}
+    
+    - name: Extract version from project.godot
+      id: extract_version
+      run: |
+        version=$(grep 'config/version=' project.godot | cut -d'"' -f2)
+        echo "version=$version" >> $GITHUB_OUTPUT
+        echo "Extracted version: $version"
+    
+    - name: Check if tag exists
+      id: check_tag
+      run: |
+        if git rev-parse "v${{ steps.extract_version.outputs.version }}" >/dev/null 2>&1; then
+          echo "exists=true" >> $GITHUB_OUTPUT
+          echo "Tag v${{ steps.extract_version.outputs.version }} already exists"
+        else
+          echo "exists=false" >> $GITHUB_OUTPUT
+          echo "Tag v${{ steps.extract_version.outputs.version }} does not exist"
+        fi
+    
+    - name: Create addon zip
+      if: steps.check_tag.outputs.exists == 'false'
+      run: |
+        cd addons
+        zip -r ../textmod-v${{ steps.extract_version.outputs.version }}.zip textmod/
+        cd ..
+        echo "Created zip: textmod-v${{ steps.extract_version.outputs.version }}.zip"
+        ls -la textmod-v${{ steps.extract_version.outputs.version }}.zip
+    
+    - name: Create Git tag
+      if: steps.check_tag.outputs.exists == 'false'
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git tag -a "v${{ steps.extract_version.outputs.version }}" -m "Release v${{ steps.extract_version.outputs.version }}"
+        git push origin "v${{ steps.extract_version.outputs.version }}"
+    
+    - name: Create GitHub Release
+      if: steps.check_tag.outputs.exists == 'false'
+      uses: softprops/action-gh-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.PAT }}
+      with:
+        tag_name: v${{ steps.extract_version.outputs.version }}
+        name: Textmod v${{ steps.extract_version.outputs.version }}
+        body: |
+          ## Godot Textmod v${{ steps.extract_version.outputs.version }}
+          
+          A text-based modification system for Godot games that allows dynamic modification of game resources through a simple text parsing syntax.
+          
+          ### Installation
+          1. Download the `textmod-v${{ steps.extract_version.outputs.version }}.zip` file
+          2. Extract it to your Godot project's `addons/` directory
+          3. Enable the plugin in your project settings
+          
+          ### Changes
+          - See commit history for detailed changes
+        files: textmod-v${{ steps.extract_version.outputs.version }}.zip
+        draft: false
+        prerelease: false
+    
+    - name: Skip release (tag exists)
+      if: steps.check_tag.outputs.exists == 'true'
+      run: |
+        echo "Skipping release creation - tag v${{ steps.extract_version.outputs.version }} already exists"

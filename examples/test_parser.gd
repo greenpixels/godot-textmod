@@ -1,5 +1,7 @@
 extends Control
 
+func _ready() -> void:
+	%TextmodAutodocBBCode.generate()
 
 func _on_text_edit_text_changed() -> void:
 	%Parser.parse_from_text(%TextEdit.text)
@@ -20,3 +22,7 @@ func _on_parser_parse_error(message: String) -> void:
 	%HBoxContainerInfo.hide()
 	%ScrollContainerError.show()
 	%ErrorMessage.text = message
+
+
+func _on_textmod_autodoc_bb_code_docs_generated(output: String) -> void:
+	%Docs.text = output

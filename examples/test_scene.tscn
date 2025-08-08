@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://cfcg07lyk5mm4"]
+[gd_scene load_steps=9 format=3 uid="uid://cfcg07lyk5mm4"]
 
 [ext_resource type="Script" uid="uid://bxmdcbhp7uo5v" path="res://examples/test_parser.gd" id="1_g3kdf"]
 [ext_resource type="Script" uid="uid://dep15iuujlogt" path="res://addons/textmod/userland/textmod_parser.gd" id="2_mjlwq"]
 [ext_resource type="Script" uid="uid://bugl0u5ny7amy" path="res://addons/textmod/core/textmod_base.gd" id="3_nu2q2"]
 [ext_resource type="Resource" uid="uid://deaajuee7ca87" path="res://examples/hero/textmod/hero_textmod.tres" id="4_2netj"]
+[ext_resource type="Script" uid="uid://i5x85du4aek5" path="res://addons/textmod/impl/autodocs/textmod_autodoc_bbcode.gd" id="5_mjlwq"]
 [ext_resource type="Script" uid="uid://bmyetf4mwj106" path="res://examples/hero_information_panel.gd" id="5_ynip6"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_0vdma"]
@@ -25,6 +26,12 @@ unique_name_in_owner = true
 script = ExtResource("2_mjlwq")
 bases = Array[ExtResource("3_nu2q2")]([ExtResource("4_2netj")])
 
+[node name="TextmodAutodocBBCode" type="Node" parent="Parser" node_paths=PackedStringArray("parser")]
+unique_name_in_owner = true
+script = ExtResource("5_mjlwq")
+parser = NodePath("..")
+metadata/_custom_type_script = "uid://i5x85du4aek5"
+
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
@@ -32,10 +39,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -354.5
-offset_top = 81.0
-offset_right = 354.5
-offset_bottom = 143.0
+offset_left = -526.0
+offset_top = 93.0
+offset_right = -4.5
+offset_bottom = 155.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
@@ -55,10 +62,10 @@ layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -354.0
-offset_top = 183.0
-offset_right = 355.0
-offset_bottom = 404.0
+offset_left = -525.5
+offset_top = 195.0
+offset_right = -4.5
+offset_bottom = 416.0
 grow_horizontal = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -174,6 +181,35 @@ theme_override_colors/font_color = Color(1, 0.44313726, 0.38431373, 1)
 text = "Error:"
 autowrap_mode = 3
 
+[node name="PanelContainer2" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 593.0
+offset_top = 31.0
+offset_right = 1122.0
+offset_bottom = 606.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer2"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer2/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="Docs" type="RichTextLabel" parent="PanelContainer2/ScrollContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+bbcode_enabled = true
+
 [connection signal="parse_error" from="Parser" to="." method="_on_parser_parse_error"]
 [connection signal="parse_success" from="Parser" to="." method="_on_parser_parse_success"]
+[connection signal="docs_generated" from="Parser/TextmodAutodocBBCode" to="." method="_on_textmod_autodoc_bb_code_docs_generated"]
 [connection signal="text_changed" from="PanelContainer/HBoxContainer/TextEdit" to="." method="_on_text_edit_text_changed"]
