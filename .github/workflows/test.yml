@@ -33,9 +33,10 @@ jobs:
         chmod +x godot/godot
         rm Godot_v4.5-beta5_linux.x86_64.zip
     
+    - name: Import project (generate .godot directory)
+      run: |
+        timeout 60 ./godot/godot --headless --editor --quit || true
+        
     - name: Run gdunit tests
       run: |
-        ./godot/godot . --editor --audio-driver Dummy --headless 
-        ./addons/gdUnit4/runtest.sh --godot_bin ~/Downloads/Godot_v4.5-beta5_linux.x86_64 -a test --audio-driver Dummy --headless --ignoreHeadlessMode
-
-        
+        ./addons/gdUnit4/runtest.sh --godot_bin ./godot/godot -a test --audio-driver Dummy --headless --ignoreHeadlessMode
