@@ -35,4 +35,4 @@ jobs:
     
     - name: Run gdunit tests
       run: |
-        ./addons/gdUnit4/runtest.sh --godot_bin ./godot/godot -a test
+        ./addons/gdUnit4/runtest.sh --godot_bin ./godot/godot -a test --display-driver headless --ignoreHeadlessMode
