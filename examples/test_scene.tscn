@@ -145,7 +145,7 @@ size_flags_horizontal = 3
 [node name="Label" type="Label" parent="HeroInformationPanel/HBoxContainerInfo/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Hair Color"
+text = "Inventory"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="HeroInformationPanel/HBoxContainerInfo/MarginContainer/VBoxContainer"]
 layout_mode = 2
