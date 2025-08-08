@@ -1,0 +1,38 @@
+name: Run Tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Cache Godot
+      id: cache-godot
+      uses: actions/cache@v3
+      with:
+        path: godot
+        key: godot-4.5-beta5-linux
+        restore-keys: |
+          godot-4.5-beta5-
+    
+    - name: Download Godot 4.5 beta 5
+      if: steps.cache-godot.outputs.cache-hit != 'true'
+      run: |
+        wget https://github.com/godotengine/godot/releases/download/4.5-beta5/Godot_v4.5-beta5_linux.x86_64.zip
+        unzip Godot_v4.5-beta5_linux.x86_64.zip
+        mkdir -p godot
+        mv Godot_v4.5-beta5_linux.x86_64 godot/godot
+        chmod +x godot/godot
+        rm Godot_v4.5-beta5_linux.x86_64.zip
+    
+    - name: Run gdunit tests
+      run: |
+        ./addons/gdUnit4/runtest.sh --godot_bin ./godot/godot -a test
