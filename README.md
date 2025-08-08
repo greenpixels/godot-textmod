@@ -1,8 +1,10 @@
 # Godot Textmod
 
-A modding API addon for Godot that can be set up almost entirely through the inspector with minimal code. It even generates documentation for your modding API automatically.
+A text-based modding API addon for Godot that can be set up almost entirely through the inspector with minimal code. It even generates documentation for your modding API automatically (BBCode, HTML or Markup).
 
 Godot Textmod is inspired by the textmod feature from Slice & Dice. I absolutley recommend checking Slice & Dice out on Steam.
+
+![Example usage](.github/images/example.gif)
 
 ## What is this?
 
@@ -12,7 +14,7 @@ This addon lets you create a modding API for your game using simple text command
 hero.name.John.health.100.items.sword.hair_color.#FF0000
 ```
 
-And it'll modify your game resources accordingly. You set it up through Godot's inspector, and it even generates documentation for your modding API automatically.
+And it'll modify your game resources accordingly.
 
 ## Installation
 
