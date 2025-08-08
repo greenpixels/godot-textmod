@@ -81,19 +81,6 @@ func bindv(caller_args: Array) -> Callable:
 
 
 
-
-
-# Is not supported, see class description
-#func call_deferred(a) -> void:
-#	pass
-
-
-# Is not supported, see class description
-#func callv(a) -> void:
-#	pass
-
-
-
 func get_bound_arguments() -> Array:
 	return _cb.get_bound_arguments()
 

@@ -9,7 +9,7 @@ func parse(value: String, part: TextmodPart) -> Variant:
 	return Color.html(value)
 
 func get_docs_examples() -> Array[String]:
-	return ["#FF0000", "#00FF00", "#0000FF", "#FFFFFF", "#000000", "FF0000", "ABC", "#RGBA"]
+	return ["#FF0000", "#00FF00", "#0000FF", "#FFFFFF", "#000000", "FF0000", "ABC"]
 
 func get_docs_description() -> String:
 	var examples: Array[String] = get_docs_examples()
