@@ -24,6 +24,15 @@ gdscript/warnings/untyped_declaration=2
 
 window/stretch/mode="canvas_items"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/gdUnit4/plugin.cfg")
+
+[gdunit4]
+
+settings/test/test_discovery=true
+ui/toolbar/run_overall=true
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

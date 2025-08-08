@@ -50,7 +50,6 @@ func _process_character(char: String, input: String, char_index: int) -> bool:
 	return _handle_regular_character(char, input, char_index)
 
 func _handle_delimiter() -> bool:
-	_strip_quotes()
 	match (state):
 		ParseState.PARSING_BASE_KEY:
 			return _handle_base_key_parsing()
@@ -62,19 +61,18 @@ func _handle_delimiter() -> bool:
 			_handle_error(TextmodError.new("Unexpected parse state encountered"))
 			return false
 
-func _strip_quotes() -> void:
-	if base_key.begins_with("\"") and base_key.ends_with("\""):
-		base_key = base_key.substr(1, base_key.length() - 2)
-	if current_modifier_key.begins_with("\"") and current_modifier_key.ends_with("\""):
-		current_modifier_key = current_modifier_key.substr(1, current_modifier_key.length() - 2)
-	if current_modifier_value.begins_with("\"") and current_modifier_value.ends_with("\""):
-		current_modifier_value = current_modifier_value.substr(1, current_modifier_value.length() - 2)
+func _strip_quotes(value : String) -> String:
+	if value.begins_with("\"") and value.ends_with("\""):
+		return value.substr(1, value.length() - 2)
+	else: return value
 
 func _handle_base_key_parsing() -> bool:
+	base_key = _strip_quotes(base_key)
+	
 	if base_key.is_empty():
 		_handle_error(TextmodError.new("Base key can not be empty."))
 		return false
-
+	
 	var found_key: bool = false
 	for base in bases:
 		if base.textmod_key == base_key:
@@ -107,12 +105,15 @@ func _setup_modifiers() -> bool:
 	return true
 
 func _handle_modifier_key_parsing() -> bool:
+	
 	if not parsed_base:
 		_handle_error(TextmodError.new("Can't parse modifier key when base is null."))
 		return false
+	current_modifier_key = _strip_quotes(current_modifier_key)
 	if current_modifier_key.is_empty():
 		_handle_error(TextmodError.new("Modifier key can not be empty."))
 		return false
+	
 	if not available_modifiers_by_key.has(current_modifier_key):
 		_handle_error(TextmodError.new(
 			"Modifier '{MODIFIER_KEY}' does not exist in given base."
@@ -160,10 +161,12 @@ func _on_parse_modifier_value() -> Variant:
 
 	if not current_modifier:
 		return TextmodError.new("Can't parse modifier value when current modifier is null.")
-
+		
+	current_modifier_value = _strip_quotes(current_modifier_value)
+	
 	if current_modifier_value.is_empty():
 		return TextmodError.new("Modifier value can not be empty.")
-
+	
 	var value: Variant = current_modifier.value_parser.parse(
 		current_modifier_value,
 		current_modifier

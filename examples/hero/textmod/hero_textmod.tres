@@ -15,6 +15,6 @@ possible_modifiers = Array[ExtResource("1_jahta")]([ExtResource("2_gupkh"), ExtR
 resource_to_modify = ExtResource("1_vdbml")
 textmod_key = "hero"
 docs_name = "Hero Creation"
-docs_description = "Allows to create and define a new hero. Value can either be fighter, wizard or priest."
+docs_description = "Allows to create and define a new hero."
 docs_color = Color(0.76833665, 0.5073326, 0, 1)
 metadata/_custom_type_script = "uid://bugl0u5ny7amy"

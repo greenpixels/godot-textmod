@@ -1,11 +1,11 @@
 [gd_scene load_steps=9 format=3 uid="uid://cfcg07lyk5mm4"]
 
-[ext_resource type="Script" uid="uid://bxmdcbhp7uo5v" path="res://examples/test_parser.gd" id="1_g3kdf"]
-[ext_resource type="Script" uid="uid://dep15iuujlogt" path="res://addons/textmod/userland/textmod_parser.gd" id="2_mjlwq"]
-[ext_resource type="Script" uid="uid://bugl0u5ny7amy" path="res://addons/textmod/core/textmod_base.gd" id="3_nu2q2"]
-[ext_resource type="Resource" uid="uid://deaajuee7ca87" path="res://examples/hero/textmod/hero_textmod.tres" id="4_2netj"]
-[ext_resource type="Script" uid="uid://i5x85du4aek5" path="res://addons/textmod/impl/autodocs/textmod_autodoc_bbcode.gd" id="5_mjlwq"]
-[ext_resource type="Script" uid="uid://bmyetf4mwj106" path="res://examples/hero_information_panel.gd" id="5_ynip6"]
+[ext_resource type="Script" uid="uid://bxmdcbhp7uo5v" path="res://examples/playgroundparser.gd" id="1_svx14"]
+[ext_resource type="Script" uid="uid://dep15iuujlogt" path="res://addons/textmod/userland/textmod_parser.gd" id="2_ppuuj"]
+[ext_resource type="Script" uid="uid://bugl0u5ny7amy" path="res://addons/textmod/core/textmod_base.gd" id="3_182yi"]
+[ext_resource type="Resource" uid="uid://deaajuee7ca87" path="res://examples/hero/textmod/hero_textmod.tres" id="4_jhedu"]
+[ext_resource type="Script" uid="uid://i5x85du4aek5" path="res://addons/textmod/impl/autodocs/textmod_autodoc_bbcode.gd" id="5_yu1l4"]
+[ext_resource type="Script" uid="uid://bmyetf4mwj106" path="res://examples/hero_information_panel.gd" id="6_3h1xj"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_0vdma"]
 
@@ -19,16 +19,16 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_g3kdf")
+script = ExtResource("1_svx14")
 
 [node name="Parser" type="Node" parent="."]
 unique_name_in_owner = true
-script = ExtResource("2_mjlwq")
-bases = Array[ExtResource("3_nu2q2")]([ExtResource("4_2netj")])
+script = ExtResource("2_ppuuj")
+bases = Array[ExtResource("3_182yi")]([ExtResource("4_jhedu")])
 
 [node name="TextmodAutodocBBCode" type="Node" parent="Parser" node_paths=PackedStringArray("parser")]
 unique_name_in_owner = true
-script = ExtResource("5_mjlwq")
+script = ExtResource("5_yu1l4")
 parser = NodePath("..")
 metadata/_custom_type_script = "uid://i5x85du4aek5"
 
@@ -69,7 +69,7 @@ offset_bottom = 416.0
 grow_horizontal = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-script = ExtResource("5_ynip6")
+script = ExtResource("6_3h1xj")
 
 [node name="HBoxContainerInfo" type="HBoxContainer" parent="HeroInformationPanel"]
 unique_name_in_owner = true
