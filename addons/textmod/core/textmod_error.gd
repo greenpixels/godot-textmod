@@ -1,5 +1,5 @@
-extends RefCounted
 class_name TextmodError
+extends RefCounted
 
 var message: String = ""
 var part: TextmodPart = null

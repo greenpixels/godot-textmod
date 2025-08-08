@@ -1,5 +1,5 @@
-extends TextmodValueParser
 class_name TextmodValueParserText
+extends TextmodValueParser
 
 @export var regex_expression: String = ""
 
@@ -10,7 +10,9 @@ func parse(value: String, part: TextmodPart) -> Variant:
 		var regex = RegEx.new()
 		var error = regex.compile(regex_expression)
 		if not error == OK or not regex.is_valid():
-			return TextmodError.new("Unable to parse regex expression {EXPRESSION}. For more information, see https://docs.godotengine.org/en/latest/classes/class_regex.html" \
+			return TextmodError.new(
+				"Unable to parse regex expression {EXPRESSION}. " +
+				"For more information, see https://docs.godotengine.org/en/latest/classes/class_regex.html"
 				.format({"EXPRESSION": regex_expression}), part)
 		if not regex.search(value):
 			return TextmodError.new("{VALUE} does not match the regex expression ({EXPRESSION})" \

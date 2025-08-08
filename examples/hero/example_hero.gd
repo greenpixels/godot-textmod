@@ -1,5 +1,5 @@
-extends Resource
 class_name ExampleHero
+extends Resource
 
 var hero_name : String = "Unknown"
 var health : int = 100

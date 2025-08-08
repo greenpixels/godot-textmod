@@ -1,0 +1,1 @@
+- abstract has been added with Godot 4.5 and can be added to a class or a function. It does not need an implementation.
